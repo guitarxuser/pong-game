@@ -93,9 +93,13 @@ public class Mywin extends javax.swing.JFrame
 
 				private void tfe1ActionPerformed(ActionEvent evt) {
 					// TODO Auto-generated method stub
+					synchronized(v){
+					   v.clear();
 					   tcp_ip_str=tfe1.getText();
-					   tfe1.setText("");
-					   new PongFrame(orientation);
+					   tfe1.setText(tcp_ip_str);
+					   Mywin.orientation="right";	
+					   v.notify();
+					}
 					 
 					
 				}
@@ -177,7 +181,7 @@ public class Mywin extends javax.swing.JFrame
 					}
 				}
 				try {
-					new PongFrame(orientation);
+					new PongFrame(Mywin.orientation);
 					v.clear();
 				} catch (Exception e2) {
 				//	System.exit(0);
