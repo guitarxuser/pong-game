@@ -37,7 +37,7 @@ public class PongFrame  extends JFrame{
 	private int old_racket_y;
 //	udp_cli udp_client;
 	
-	private static String orientation="default";
+	private static String orientation;
 	
 	public PongFrame(String orientation) {
 		
