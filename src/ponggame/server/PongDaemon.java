@@ -49,12 +49,8 @@ public class PongDaemon extends Thread implements Runnable{
 	  server = ServerSocketChannel.open();
 	  // nonblocking I/O
 	  server.configureBlocking(false);
-	  // host-port PORTNUM
-   //   SocketAddress address = new InetSocketAddress(
-   //           InetAddress.getLocalHost(), PORTNUM);
-      
-	//  server.socket().bind(new java.net.InetSocketAddress("pcsika02",PORTNUM));
-      server.socket().bind(new java.net.InetSocketAddress(
+
+          server.socket().bind(new java.net.InetSocketAddress(
               InetAddress.getLocalHost(), PORTNUM));
 	
 	  System.out.println("Server activ on tcp ip port "+InetAddress.getLocalHost()+" :"+PORTNUM);
@@ -71,7 +67,7 @@ public class PongDaemon extends Thread implements Runnable{
     // Even though we are functioning as a daemon in regard to the
     // game, we don't want to be declared as a daemon thread here
     // because we don't want the runtime system to kill us off.
-  //  Socket clientSocket;
+    //  Socket clientSocket;
     
 //    while (true) {
 /////////////////////////////////////////////////////////////////////////////////
