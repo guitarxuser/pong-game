@@ -96,7 +96,7 @@ public class Mywin extends javax.swing.JFrame
 					synchronized(v){
 					   v.clear();
 					   tcp_ip_str=tfe1.getText();
-					   tfe1.setText(tcp_ip_str);
+					   tfe1.setText(tcp_ip_str+" connect");
 					   Mywin.orientation="right";	
 					   v.notify();
 					}
