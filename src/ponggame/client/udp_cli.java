@@ -18,7 +18,7 @@ public class udp_cli extends Thread{
 	public static DatagramChannel client = null;
 	private Vector<Integer> v= new Vector<Integer>(); 
 	private  Exchanger<String> ex= new Exchanger<String>();
-	
+	String ip_address;
 	public  udp_cli(Vector<Integer> v) throws Exception {
 		this.v=v;
 
@@ -30,13 +30,37 @@ public class udp_cli extends Thread{
 	    buffer = ByteBuffer.wrap(msg.getBytes());
 	  
 	    /////////////////generic///////////////////
-	    try {
-	    	serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), PORTNUM);
-	    	
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	    if(Mywin.orientation == "left")
+		  {
+			  try {
+				  serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), PORTNUM);
+				  //  port.socket().bind(new java.net.InetSocketAddress(a.getCodeBase().getHost(), PORTNUM ));
+				  //  port.connect(new java.net.InetSocketAddress(a.getCodeBase().getHost(), PORTNUM ));
+			  } catch (IOException e1) {
+				  // TODO Auto-generated catch block
+				  e1.printStackTrace();
+			  }
+		  }
+	    if((Mywin.orientation == "right") && (Mywin.tcp_ip_str==null))
+		  {	  
+			  try { //local
+				  serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), PORTNUM);			 
+
+			  } catch (IOException e1) {
+				  // TODO Auto-generated catch block
+
+				  e1.printStackTrace();
+				  
+			  }
+		  }
+
+			  if (Mywin.tcp_ip_str!=null)
+			  { 
+				  ip_address=Mywin.tcp_ip_str;
+				  // serverAddress = new InetSocketAddress(InetAddress.getLocalHost(), PORTNUM);
+				  serverAddress = new java.net.InetSocketAddress(ip_address,PORTNUM );
+			  }
+	   
 	    /* Initialization */
 	    try {
 			client.send(buffer, serverAddress);
