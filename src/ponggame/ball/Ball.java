@@ -42,8 +42,8 @@ public class Ball extends Thread implements Runnable{
 	public static int local_player_x=10,local_player_y=100,remote_player_x=250,remote_player_y=100;
 	private int countPlayer_remote=0;
 	private int countPlayer_local=0;
-	private String [] s_array_L= {"101"};
-	private String [] s_array_R= {"101"};
+	private String [] s_array_L= {"X101"};
+	private String [] s_array_R= {"X101"};
 	private boolean first_call=true;
 	
 	public void run() {
@@ -146,7 +146,8 @@ public class Ball extends Thread implements Runnable{
 	  class UseString implements Runnable {
 		  Exchanger<String> ex;
 	//	  bool first_call;
-		  private String str="111";
+		  private String str="RX111";
+		  private String position_y="1";
 
 		  UseString(Exchanger<String> c) {
 			  ex = c;
@@ -220,7 +221,23 @@ public class Ball extends Thread implements Runnable{
 				//	int player_pos = 10;
 				    if(str.contains("R"))
 				    {
-				    	local_player_y=new Integer(str.substring(2)).intValue();
+				    	System.out.println(str);
+				    	
+				    	position_y=str.substring(2);
+				    	int pos =position_y.indexOf("X");
+				    	if(pos <= 0)
+				    	{
+				    		pos=0;
+				    	}
+				    	System.out.println(position_y +"  " +str.length()+ " "+ pos);
+						
+				    	try {
+				    		local_player_y=new Integer(str.substring(2,pos+2)).intValue();
+						} catch (Exception e) {
+							System.out.println(e);
+							// TODO: handle exception
+						}
+				    	
 				    }
 				    
 				    if(str.contains("L"))
