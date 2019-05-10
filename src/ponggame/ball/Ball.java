@@ -219,27 +219,28 @@ public class Ball extends Thread implements Runnable{
 					
 					
 				//	int player_pos = 10;
-				    if(str.contains("R"))
-				    {
-				    	System.out.println(str);
-				    	
-				    	position_y=str.substring(2);
-				    	int pos =position_y.indexOf("X");
-				    	if(pos <= 0)
-				    	{
-				    		pos=0;
-				    	}
-				    	System.out.println(position_y +"  " +str.length()+ " "+ pos);
-						
-				    	try {
-				    		local_player_y=new Integer(str.substring(2,pos+2)).intValue();
-						} catch (Exception e) {
-							System.out.println(e);
-							// TODO: handle exception
+					if(str.contains("R"))
+					{
+						System.out.println(str);
+
+						position_y=str.substring(2);
+						int pos =position_y.indexOf("X");
+						if(pos <= 0)
+						{
+							System.out.println(position_y +"  " +str.length()+ " "+ pos);
+							local_player_y=new Integer(str.substring(2)).intValue();
 						}
-				    	
-				    }
-				    
+
+						else{
+							try {
+								local_player_y=new Integer(str.substring(2,pos)).intValue();
+							} catch (Exception e) {
+								System.out.println(e);
+								// TODO: handle exception
+							}
+						}
+					}
+
 				    if(str.contains("L"))
 				    {
 				    	remote_player_y=new Integer(str.substring(2)).intValue();
