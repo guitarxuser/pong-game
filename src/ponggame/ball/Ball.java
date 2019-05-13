@@ -148,7 +148,7 @@ public class Ball extends Thread implements Runnable{
 	//	  bool first_call;
 		  private String str="RX111";
 		  private String position_y="1";
-
+		  private String position_y_between="1";
 		  UseString(Exchanger<String> c) {
 			  ex = c;
 			  new Thread(this).start();
@@ -229,11 +229,32 @@ public class Ball extends Thread implements Runnable{
 						{
 							System.out.println(position_y +"  " +str.length()+ " "+ pos);
 							local_player_y=new Integer(str.substring(2)).intValue();
+
 						}
 
-						else{
+						System.out.println(position_y +"  " +str.length()+ " "+ pos);
+
+						if((pos == 2) && (position_y.length() <7))
+						{
+
 							try {
-								local_player_y=new Integer(str.substring(2,pos)).intValue();
+								//	local_player_y=new Integer(str.substring(2,pos+2)).intValue();
+								local_player_y=new Integer(str.substring(2)).intValue();
+							} catch (Exception e) {
+								System.out.println(e);
+								// TODO: handle exception
+							}
+						}
+						
+						if(pos==3)
+						{
+							position_y_between=position_y.substring(4);
+							System.out.println("position_y_between"+position_y_between);
+							
+							try {
+						
+								System.out.println("position_y_between"+position_y_between);
+								local_player_y=new Integer(position_y_between).intValue();
 							} catch (Exception e) {
 								System.out.println(e);
 								// TODO: handle exception
